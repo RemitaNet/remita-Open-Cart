@@ -1,0 +1,29 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header">Remita Checkout Configuration</div>
+      <div class="card-body">
+        <form action="" method="post" id="form-payment">
+          <div class="mb-3">
+            <label class="form-label">Base URL</label>
+            <input type="text" name="payment_remita_checkout_base_url" value="{{ payment_remita_checkout_base_url }}" class="form-control" placeholder="https://api.remita.net"/>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Secret Key</label>
+            <input type="password" name="payment_remita_checkout_secret_key" value="{{ payment_remita_checkout_secret_key }}" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Status</label>
+            <select name="payment_remita_checkout_status" class="form-select">
+              <option value="1" {% if payment_remita_checkout_status %}selected{% endif %}>Enabled</option>
+              <option value="0" {% if not payment_remita_checkout_status %}selected{% endif %}>Disabled</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Save Settings</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{ footer }}
