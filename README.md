@@ -1,7 +1,4 @@
-```python
-import base64
-
-readme_content = """# Remita Pay Payment Gateway Extension for OpenCart 4.x
+# Remita Pay Payment Gateway Extension for OpenCart 4.x
 
 A robust, enterprise-grade OpenCart 4.x payment gateway extension that integrates the **Remita Payment Engine API**. This extension allows online merchants to securely accept payments on their storefronts, automatically generating dynamic checkout URLs via a secure backend cURL API invocation and seamlessly redirecting customers to finalize payments.
 
@@ -36,23 +33,16 @@ A robust, enterprise-grade OpenCart 4.x payment gateway extension that integrate
 
 OpenCart partitions its internal engine into two operational instances: **Admin** (handling merchant configurations) and **Catalog** (rendering public buyer interactions). This plugin utilizes the Model-View-Controller-Language (MVC-L) design paradigm within both contexts under the `payment` category extension.
 
-
-```
-
 ```
    [ CLIENT BROWSER (Checkout) ] 
                  │
      AJAX Post  │  ▲  JSON Redirect Response
                  ▼  │
-
-```
-
-[ Catalog Controller: remita_pay|send ]
-│
+   [ Catalog Controller: remita_pay|send ]
+                 │
 Encrypted    │  ▲  Deserialized
 cURL POST   ▼  │   JSON Response
-[ REMITA PAYMENT GATEWAY API ENGINE ]
-
+   [ REMITA PAYMENT GATEWAY API ENGINE ]
 ```
 
 When a buyer initializes the confirmation stage:
@@ -66,7 +56,7 @@ When a buyer initializes the confirmation stage:
 
 Maintain the exact folder architecture outlined below. Variances in directory hierarchy or nomenclature casing will cause structural failures in the OpenCart routing sub-system.
 
-```text
+```
 remita_pay/
 ├── install.json
 ├── admin/
@@ -89,7 +79,6 @@ remita_pay/
         └── template/
             └── payment/
                 └── remita_pay.twig
-
 ```
 
 ---
@@ -107,10 +96,9 @@ Placed strictly at the absolute root of the working repository directory. This p
   "name": "Remita Pay Gateway",
   "version": "1.0.0",
   "author": "Your Development Team",
-  "link": "[https://yourdomain.com](https://yourdomain.com)",
+  "link": "https://yourdomain.com",
   "code": "remita_pay"
 }
-
 ```
 
 ---
@@ -134,12 +122,11 @@ $_['entry_secret_key']       = 'Secret Key';
 $_['entry_status']           = 'Gateway Status';
 
 // Help Text Hints
-$_['help_base_url']          = 'Provide the root API endpoint URL given by Remita (e.g., [https://remitademo.net](https://remitademo.net) or production gateway).';
+$_['help_base_url']          = 'Provide the root API endpoint URL given by Remita (e.g., https://remitademo.net or production gateway).';
 $_['help_secret_key']        = 'Provide your unique merchant secret authentication key.';
 
 // Error Threshold Messaging
 $_['error_permission']       = 'Warning: You do not possess adequate access credentials to modify Remita Pay settings.';
-
 ```
 
 #### File: `admin/controller/payment/remita_pay.php`
@@ -219,7 +206,6 @@ class RemitaPay extends \Opencart\System\Engine\Controller {
         return !$this->error;
     }
 }
-
 ```
 
 #### File: `admin/view/template/payment/remita_pay.twig`
@@ -255,7 +241,7 @@ Defines the merchant administration interface styled on Bootstrap classes mappin
           <div class="row mb-3 required">
             <label class="col-sm-2 col-form-label" for="input-base-url"><span data-bs-toggle="tooltip" title="{{ help_base_url }}">{{ entry_base_url }}</span></label>
             <div class="col-sm-10">
-              <input type="text" name="payment_remita_pay_base_url" value="{{ payment_remita_pay_base_url }}" placeholder="[https://remitademo.net](https://remitademo.net)" id="input-base-url" class="form-control" required="required" />
+              <input type="text" name="payment_remita_pay_base_url" value="{{ payment_remita_pay_base_url }}" placeholder="https://remitademo.net" id="input-base-url" class="form-control" required="required" />
             </div>
           </div>
 
@@ -282,7 +268,6 @@ Defines the merchant administration interface styled on Bootstrap classes mappin
   </div>
 </div>
 {{ footer }}
-
 ```
 
 ---
@@ -382,7 +367,6 @@ class RemitaPay extends \Opencart\System\Engine\Controller {
         $this->response->setOutput(json_encode($json));
     }
 }
-
 ```
 
 #### File: `catalog/view/template/payment/remita_pay.twig`
@@ -422,7 +406,6 @@ $('#button-confirm').on('click', function() {
     });
 });
 //--></script>
-
 ```
 
 ---
@@ -488,30 +471,3 @@ Follow these step-by-step instructions to successfully deploy your new Remita pl
 * **Blank White Screen or 500 Errors?** Ensure your server has the PHP `curl` extension active. Check your web server's error logs (`error.log`) or OpenCart's log dashboard under **System > Maintenance > Error Logs**.
 * **Namespace Resolution Invalidation Exceptions**: Ensure you are running an explicit OpenCart v4.x release ecosystem. Older environments (v3.x or v2.x) do not natively understand PHP namespaces and will reject the Controller initialization protocols.
 * **Redirection Failures**: Inspect network logs inside your browser console web inspect tools to see the raw output from the `send()` method. If Remita returns an authentication failure, double-check your API key strings and make sure there are no trailing slashes on your Base URL field input.
-  """
-
-with open("README.md", "w", encoding="utf-8") as f:
-f.write(readme_content.strip())
-
-print("README.md written successfully.")
-
-```
-
-```text?code_stdout&code_event_index=1
-README.md written successfully.
-
-
-```
-
-Your Markdown documentation file is ready.
-
-
-The `README.md` file has been fully generated and structured specifically around the OpenCart 4.x extension architecture requirements.
-
-### Key Elements Covered in the Guide:
-
-1. **The MVC-L Pipeline Workflow:** A thorough conceptual architecture breakdown illustrating how the storefront frontend hands variables off asynchronously via jQuery/AJAX, transforms total values to integer decimals (Cents/Kobo conversions), sends payload states directly to the backend through cURL, and handles the resulting redirection response.
-2. **Complete Code Blueprint Implementations:** Concrete, production-ready code examples covering the `install.json` metadata manifest file, localized language scripts (`en-gb`), controllers for both administrative panel adjustments and customer-facing interactions, and theme layouts (`.twig`).
-3. **Packaging Constraints:** Step-by-step instructions details on how to select and zip items *inside* the development directory to ensure the OpenCart extraction engine reads the manifest properly at runtime.
-4. **Step-by-step Deployment Guide:** Granular implementation procedures guiding merchants from uploading the finalized `.ocmod.zip` bundle, assigning permissions, updating API keys, mapping development sandboxes vs live gateways, to executing manual validation transaction test checks.#   r e m i t a - O p e n - C a r t  
- 
