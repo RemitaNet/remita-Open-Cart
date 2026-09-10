@@ -4,21 +4,6 @@ A robust, enterprise-grade OpenCart 4.x payment gateway extension that integrate
 
 ---
 
-## Table of Contents
-- [Key Features](#key-features)
-- [Architecture & MVC-L Pattern](#architecture--mvc-l-pattern)
-- [Plugin Directory Tree](#plugin-directory-tree)
-- [Detailed Code Component Implementations](#detailed-code-component-implementations)
-  - [1. Metadata & Manifest File](#1-metadata--manifest-file)
-  - [2. Admin Panel Module Components](#2-admin-panel-module-components)
-  - [3. Catalog Storefront Components](#3-catalog-storefront-components)
-- [How to Package the Extension](#how-to-package-the-extension)
-- [Deployment & Configuration Steps](#deployment--configuration-steps)
-- [Technical Considerations & Enhancements](#technical-considerations--enhancements)
-- [Troubleshooting & Support](#troubleshooting--support)
-
----
-
 ## Key Features
 
 * **OpenCart 4.x Compatible**: Built natively using the strict namespace design standards introduced in OpenCart 4.x.
