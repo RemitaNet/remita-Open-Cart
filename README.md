@@ -443,6 +443,32 @@ Follow these step-by-step instructions to successfully deploy your new Remita pl
 
 ---
 
+## Running Tests
+
+The plugin ships with a zero-dependency test suite — no Composer, no live Remita calls required. Run it from the plugin root:
+
+```bash
+php tests/run.php
+```
+
+Filter to a single test group:
+
+```bash
+php tests/run.php --filter WebhookProcessor
+```
+
+---
+
+## Packaging
+
+Build a distributable extension archive from the plugin root:
+
+```bash
+bash scripts/package-remita-pay.sh
+```
+
+---
+
 ## Technical Considerations & Enhancements
 
 * **Currency Interceptors**: This extension passes dynamic storefront codes natively (e.g. `NGN`, `USD`). Ensure your merchant configurations on Remita are set up to handle the exact currency units initialized by your store settings.
